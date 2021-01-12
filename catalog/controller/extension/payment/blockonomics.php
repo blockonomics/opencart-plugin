@@ -143,6 +143,7 @@ class ControllerExtensionPaymentBlockonomics extends Controller {
 
     $current_time = time();
     $data['orderTimestamp'] = $current_time;
+    $data['time_period'] = $this->setting('time_period');
     $data['order_id'] = $order_id;
 
     $data['success_url'] = $this->url->link('checkout/success');

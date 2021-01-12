@@ -40,6 +40,7 @@ $_['entry_confirmed_status'] = 'Confirmed Status';
 $_['entry_complete_status']  = 'Complete Status';
 $_['entry_callback_url']       = 'Callback URL';
 $_['entry_api_key']       = 'Blockonomics API Key';
+$_['entry_time_period']      = 'Time Period';
 $_['entry_debug']            = 'Debug Logging';
 $_['entry_name']             = 'Name';
 $_['entry_email_address']    = 'Email Address';
@@ -54,6 +55,7 @@ $_['help_confirmed_status']  = 'Once confirmed Bitcoin transaction order status'
 $_['help_complete_status']   = 'An invoice that has been credited to your account';
 $_['help_callback_url']        = 'Blockonomics&#8217;s IPN will post invoice status updates to this URL';
 $_['help_api_key']        = 'Blockonimcs will provide API KEY in its settings to do API calls';
+$_['help_time_period']      = 'Countdown timer on payment page (in minutes)';
 
 // Warning
 $_['warning_permission']        = 'Warning: You do not have permission to modify the Blockonomics payment module.';

@@ -23,6 +23,7 @@
         <div id="btc-href" data-href="{{ btc_href }}"></div>
         <div id="btc-address" data-address="{{ btc_address }}"></div>
         <div id="order-timestamp" data-timestamp="{{ orderTimestamp }}"></div>
+        <div id="time_period" data-time_period="{{ time_period }}"></div>
 
         <div style="width: 100%;height: 7px;background: #ddd;margin: 20px 0;overflow: hidden;position: relative;">
           <div id="time-left" style="width: 100%;height: 7px;background: #666;left: 0;position: absolute;top: 0;"></div>
@@ -199,7 +200,10 @@ $( document ).ready(function() {
   window.setInterval(tick, 1000);
 
   var timeLeftElem = document.getElementById("time-left");
-  var totalTime = 600;
+
+  var time_period_div = document.getElementById("time_period");
+  var blockonomics_time_period = time_period_div.dataset.time_period;
+  var totalTime = blockonomics_time_period * 60;
   var timeLeft = totalTime;
 
   // On every tick, update progressbar width to be percentage of total time divided by time left

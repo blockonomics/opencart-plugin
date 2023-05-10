@@ -6,7 +6,7 @@
 class Blockonomics {
 
 	/** @var int $version */
-	public $version = '0.2.3';
+	public $version = '3.2.4';
 
 	/** @var Registry $registry */
 	private $registry;

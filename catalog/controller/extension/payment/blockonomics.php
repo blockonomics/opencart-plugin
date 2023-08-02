@@ -220,17 +220,25 @@ class ControllerExtensionPaymentBlockonomics extends Controller {
       die('Invalid secret');
     }
 
-    //Upate order info
-    $query="UPDATE ".DB_PREFIX."blockonomics_bitcoin_orders SET status='".(int)$status."',txid='".$txid."',bits_payed=".(int)$value." WHERE addr='".$addr."'";
-    $this->db->query($query);
-
-    $sql = $this->db->query("SELECT * FROM ".DB_PREFIX."blockonomics_bitcoin_orders WHERE `addr` = '".$addr."' LIMIT 1");
+	$sql = $this->db->query("SELECT * FROM ".DB_PREFIX."blockonomics_bitcoin_orders WHERE `addr` = '".$addr."' LIMIT 1");
     $order = $sql->row;
 
     if(!isset($order['id_order'])){
-			$this->log('error', 'Order with bitcoin address '.$addr.' not found in the records.');
-      return;
+		$this->log->write('Order with bitcoin address '.$addr.' not found in the records.');
+    	return;
     }
+
+	// Check if callback has already been processed
+	if($status<=$order['status'] && $txid==$order['txid']){
+		$e = new Exception();
+		$this->log->write('Order with txid '.$txid.' and status '.$status.' already processed.');
+		$this->log->write($e->getTraceAsString());
+		return;
+	}
+
+    //Upate order info
+    $query="UPDATE ".DB_PREFIX."blockonomics_bitcoin_orders SET status='".(int)$status."',txid='".$txid."',bits_payed=".(int)$value." WHERE addr='".$addr."'";
+    $this->db->query($query);
 
     $comment = "";
     $bits = $order['bits'];
